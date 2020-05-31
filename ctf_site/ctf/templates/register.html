@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% load static %}
+        <link rel="icon" href="{% static "icon.png" %}" type="image/png" sizes="16x16">
+        <!-- We are going to start by loading some stylesheets cus I am too lazy to actually style stuff-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static "css/login.css" %}">
+        <!-- Now we will load all of our cool js libraries, notice the integrity field try to think why this is important-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <title>{{ TITLE }} - Register</title>
+    </head>
+    <body style="direction: rtl !important;">
+        <form class="form-signin" action="{% url 'register' %}" method="POST">
+          <center><h1 class="h3 mb-3 font-weight-normal">הירשם</h1></center>
+            {% csrf_token %}
+          <label for="id_username" class="sr-only">שם משתמש</label>
+          <input type="text" id="id_username" name="username" class="form-control" placeholder="שם משתמש" required autofocus>
+          <label for="id_password" class="sr-only">סיסמא</label>
+          <input type="password" id="id_password" name="password" class="form-control" placeholder="סיסמא" required>
+            {% if wrong %}
+            <center>
+                <span style="color: red; font-size: medium; font-weight: bolder">סיסמא עם תווים לא חוקיים או שם משתמש תפוס</span>
+            </center>
+            {% endif %}
+          <button class="btn btn-lg btn-primary btn-block" type="submit">היכנס</button>
+        </form>
+    </body>
+</html>
