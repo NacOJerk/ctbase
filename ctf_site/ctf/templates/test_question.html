@@ -1,0 +1,10 @@
+{% extends 'basic_modal.html' %}
+
+{% block title %}Wire resistance{% endblock %}
+
+{% block content %}
+Given that every single resistor has a resistance of R, what is the resistance between the two ends of the wire:
+{% load static %}
+<img style="width: 100%;" src="{% static "questions\resistance.png" %}">
+{% endblock content %}
+
