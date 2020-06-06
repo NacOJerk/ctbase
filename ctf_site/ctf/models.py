@@ -8,3 +8,23 @@ class User(models.Model):
 
     def __str__(self):
         return self.name_field
+
+
+class Category(models.Model):
+    title_field = models.CharField(max_length=128)
+
+
+class Challenge(models.Model):
+    category_field = models.ForeignKey(Category, on_delete=models.CASCADE)
+    title_field = models.CharField(max_length=128)
+    text_field = models.CharField(max_length=1024)
+    file_field = models.CharField(max_length=1024)
+    score_field = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class Score(models.Model):
+    user_field = models.ForeignKey(User, on_delete=models.CASCADE)
+    challenge_field = models.ForeignKey(Challenge, on_delete=models.CASCADE)
