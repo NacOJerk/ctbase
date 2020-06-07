@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 
 from bcrypt import gensalt, hashpw, checkpw
 
@@ -12,7 +13,7 @@ from .models import User
 def index(request):
     if 'user' not in request.session or not request.session['user']:
         return redirect('login')
-    return render(request, 'index.html', {'user' : request.session['user']})
+    return render(request, 'index.html', {'user': request.session['user']})
 
 
 def login(request):
@@ -30,6 +31,7 @@ def login(request):
                 correct = checkpw(password, hash)
                 if correct:
                     request.session['user'] = username
+                    request.session['user-id'] = user.get().id # This is going to be unsafe hurray
                     return redirect('index')
             else:
                 wrong = True
@@ -43,7 +45,7 @@ def register2(request):
             print('Username:', username)
             password = request.GET['password'].encode()
             print('Password:', password)
-            salt = gensalt() # This could be used for a DOS attack
+            salt = gensalt()  # This could be used for a DOS attack
             password = hashpw(password, salt)
             print('Salted Password:', password)
             user = User(name_field=username, hash_field=password)
@@ -72,10 +74,23 @@ def register(request):
     return render(request, 'register.html', {'wrong': wrong})
 
 
-
 @csrf_protect
 @require_POST
 @never_cache
 def logout(request):
+    if 'user' not in request.session:
+        return HttpResponse(status=401)
     del request.session['user']
+    if 'user-id' not in request.session:
+        return HttpResponse(status=401)
+    del request.session['user-id']
     return redirect('login')
+
+
+def answer(request):
+    if request.method != 'POST' or 'user' not in request.session or \
+            not request.session['user'] or \
+            "id" not in request.POST or\
+            "answer" not in request.POST:
+        return HttpResponse(status=401)
+    return HttpResponse("%s %s %s" % (request.session['user-id'], request.POST['id'], request.POST['answer']))

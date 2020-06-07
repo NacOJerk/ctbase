@@ -1,20 +1,20 @@
-<div class="modal fade" id="mod-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade question-form" id="mod-{{ id }}" question="{{ id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="{{ id }}-modal-title">{% block title %}abc{% endblock %}</h5>
+        <h5 class="modal-title" id="{{ id }}-modal-title">{% block title %}Random Shit{% endblock %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
           {% block content %}
-
+            Wow some more random shit
           {% endblock content %}
         <form>
           <div class="form-group">
-            <label for="flag-data-{{ id }}}" class="col-form-label">Answer</label>
-            <input type="text" class="form-control" id="flag-data-{{ id }}}">
+            <label for="flag-data" class="col-form-label">Answer</label>
+            <input type="text" class="form-control" id="flag-data">
             <center>
             <input type="submit" style="margin-top: 10px;" class="btn btn-primary">
               </center>
