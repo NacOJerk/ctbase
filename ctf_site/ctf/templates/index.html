@@ -1,93 +1,113 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	  {% load static %}
-	  <link rel="icon" href="{% static "icon.png" %}" type="image/png" sizes="16x16">
-      <title>{{ TITLE }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% load static %}
+    <link rel="icon" href="{% static "icon.png" %}" type="image/png" sizes="16x16">
+    <title>{{ TITLE }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic&amp;display=swap">
-      <link rel="stylesheet" href="{% static "fonts/fontawesome-all.min.css" %}?h=2c0fc24b3d3038317dc51c05339856d0">
-      <link rel="stylesheet" href="{% static "fonts/font-awesome.min.css" %}?h=2c0fc24b3d3038317dc51c05339856d0">
-      <link rel="stylesheet" href="{% static "fonts/fontawesome5-overrides.min.css" %}?h=2c0fc24b3d3038317dc51c05339856d0">
-      <link rel="stylesheet" href="{% static "css/main.css" %}">
-      <link rel="stylesheet" href="{% static "css/nav-button.css" %}">
-   </head>
-   <body>
-      <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color: rgb(34,34,34);">
-         <div class="container">
-            <a class="navbar-brand" style="color: rgb(255,255,255);" href="#">
-               <h3>{{ TITLE }}</h3>
-            </a>
-            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
-               style="color: rgb(255,255,255);"><span class="sr-only">Toggle navigation</span><i
-               class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-               <ul class="nav navbar-nav mr-auto"></ul>
-				<form method="post" action="{% url 'logout' %}">{% csrf_token %}
-					<input type="hidden" name="next" value="{{next}}" />
-					<input type="hidden" name="confirm" value="true" />
-					<span class="navbar-text actions">
-						<input type="submit" class="btn btn-primary btn-lg action-button" type="button" style="font-weight: bold;" value="Logout">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic&amp;display=swap">
+    <link rel="stylesheet" href="{% static "fonts/fontawesome-all.min.css" %}?h=2c0fc24b3d3038317dc51c05339856d0">
+    <link rel="stylesheet" href="{% static "fonts/font-awesome.min.css" %}?h=2c0fc24b3d3038317dc51c05339856d0">
+    <link rel="stylesheet" href="{% static "fonts/fontawesome5-overrides.min.css" %}?h=2c0fc24b3d3038317dc51c05339856d0">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "css/nav-button.css" %}">
+</head>
+<body>
+<nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color: rgb(34,34,34);">
+    <div class="container">
+        <a class="navbar-brand" style="color: rgb(255,255,255);" href="#">
+            <h3>{{ TITLE }}</h3>
+        </a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
+                style="color: rgb(255,255,255);"><span class="sr-only">Toggle navigation</span><i
+                class="fas fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto"></ul>
+            <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+                <input type="hidden" name="next" value="{{next}}"/>
+                <input type="hidden" name="confirm" value="true"/>
+                <span class="navbar-text actions">
+						<input type="submit" class="btn btn-primary btn-lg action-button" type="button"
+                               style="font-weight: bold;" value="Logout">
 							Logout
-						</input>
+                    </input>
 					</span>
-				</form>
+            </form>
 
-            </div>
-         </div>
-      </nav>
-      <div class="container">
-         <h1 class="text-center" style="padding-top: 15px; padding-bottom: 20px;">Welcome, {{ user }}</h1>
-      </div>
-      {% include "basic_category.html" with title="Reved's" %}
-      {% include "test_question.html" with id="123" %}
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="text-center" style="padding-top: 15px; padding-bottom: 20px;">Welcome, {{ user }}</h1>
+</div>
+{% include "basic_category.html" with title="Reved's" %}
+{% include "test_question.html" with id="123" %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-   <script>
-       function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script>
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    $(document).ready(function () {
+        console.log('Adding listeners');
+        let csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+// these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
 
-       $(document).ready(function()
-       {
-           console.log('Adding listeners');
-           let csrftoken = getCookie('csrftoken');
-function csrfSafeMethod(method) {
-// these HTTP methods do not require CSRF protection
- return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-$.ajaxSetup({
-  beforeSend: function(xhr, settings) {
-    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-    }
-  }
-});
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
 
-           $(".question-form").submit(function(e){
-              e.preventDefault();
-              let form = $(this);
-              let id = form.attr('question');
-              let data = form.find("#flag-data").val();
-              form.find("#flag-data").val('');
-              form.modal('toggle');
-              $.ajax({
-                  url: "{% url 'answer' %}",
-                  type: "POST",
-                  data: {'id': id, 'answer': data},
-                  success: function(result){
-                        $("#div1").html(result);
-                  }
-              });
-           });
-       });
-   </script>
-   </body>
+        $(".question-form").submit(function (e) {
+            e.preventDefault();
+            let form = $(this);
+            let id = form.attr('question');
+            let data = form.find("#flag-data").val();
+            $.ajax({
+                url: "{% url 'answer' %}",
+                type: "POST",
+                data: {'id': id, 'answer': data},
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                    form.find(".fa-circle-o-notch").show();
+                },
+                success: function (result) {
+                    if(result == "1") {
+                        $("#button-" + id).attr('disabled', 'true');
+                        $("#button-"+id).find(".fa-question-circle").removeClass('fa-question-circle').addClass('fa-check-circle')
+                        form.modal('toggle');
+                    }
+                    else if(result == "2")
+                    {
+                        form.find('#error').text("Answer is wrong !");
+                    }
+                    else if(result == "3")
+                    {
+                        form.find('#error').text("You already answered this question !");
+                    }
+                },
+            }).always(function () {
+                //form.find(".fa-circle-o-notch").hide();
+            });
+        });
+    });
+</script>
+</body>
 </html>

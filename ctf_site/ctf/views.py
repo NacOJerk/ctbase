@@ -93,4 +93,5 @@ def answer(request):
             "id" not in request.POST or\
             "answer" not in request.POST:
         return HttpResponse(status=401)
-    return HttpResponse("%s %s %s" % (request.session['user-id'], request.POST['id'], request.POST['answer']))
+
+    return HttpResponse("2")
