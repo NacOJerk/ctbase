@@ -4,11 +4,21 @@
             <div class="col-md-12">
                 <h1>{{ title }}</h1>
                 <hr class="shadow-hr">
-                <button id="button-123" class="btn btn-primary" type="button"
+                    {% for q in questions %}
+                    {% if q not in answered %}
+                    <button id="button-{{ q.category_field.title_field }}-{{ q.title_field }}" class="btn btn-primary" type="button"
                         style="margin-right: 0.25em;padding-top: 11px;padding-right: 16px;padding-bottom: 11px;padding-left: 16px;font-size: 21px;background-color: rgb(50,130,215);"
-                        data-toggle="modal" data-target="#mod-123">
-                    <i class="fa fa-question-circle"></i>&nbsp; Resistance
-                </button>
+                        data-toggle="modal" data-target="#mod-{{ q.category_field.title_field }}-{{ q.title_field }}">
+                        <i class="fa fa-question-circle"></i>&nbsp; {{ q.title_field }}
+                    </button>
+                    {% else %}
+                    <button id="button-{{ q.category_field.title_field }}-{{ q.title_field }}" class="btn btn-primary" type="button"
+                        style="margin-right: 0.25em;padding-top: 11px;padding-right: 16px;padding-bottom: 11px;padding-left: 16px;font-size: 21px;background-color: rgb(50,130,215);"
+                        disabled="true">
+                        <i class="fa fa-check-circle"></i>&nbsp; {{ q.title_field }}
+                    </button>
+                    {% endif %}
+                    {% endfor %}
             </div>
         </div>
     </div>

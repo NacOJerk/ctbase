@@ -34,17 +34,26 @@
                                style="font-weight: bold;" value="Logout">
 							Logout
                     </input>
-					</span>
+                </span>
             </form>
 
         </div>
     </div>
 </nav>
 <div class="container">
-    <h1 class="text-center" style="padding-top: 15px; padding-bottom: 20px;">Welcome, {{ user }}</h1>
+    <h1 class="text-center" style="padding-top: 15px; padding-bottom: 20px;">ברוך הבא, {{ user }}</h1>
+    <h2 class="text-center">יש לך {{score}} נקודות</h2>
 </div>
-{% include "basic_category.html" with title="Reved's" %}
-{% include "test_question.html" with id="123" %}
+{% for category in categories %}
+    {% include "basic_category.html" with title=category.title_field questions=category.challenge_set.all answered=answered%}
+{% endfor %}
+{% for q in questions %}
+    {% if q not in answered%}
+    {% with template_name=q.file_field|stringformat:"s" id=q.category_field.title_field|stringformat:"s"|add:"-"|add:q.title_field|stringformat:"s" %}
+        {% include "questions/"|add:template_name with id=id %}
+    {% endwith %}"
+    {% endif %}
+{% endfor %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -90,9 +99,7 @@
                 },
                 success: function (result) {
                     if(result == "1") {
-                        $("#button-" + id).attr('disabled', 'true');
-                        $("#button-"+id).find(".fa-question-circle").removeClass('fa-question-circle').addClass('fa-check-circle')
-                        form.modal('toggle');
+                        location.reload();
                     }
                     else if(result == "2")
                     {

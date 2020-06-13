@@ -17,12 +17,11 @@ class Category(models.Model):
 class Challenge(models.Model):
     category_field = models.ForeignKey(Category, on_delete=models.CASCADE)
     title_field = models.CharField(max_length=128)
-    text_field = models.CharField(max_length=1024)
     file_field = models.CharField(max_length=1024)
     score_field = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return self.title_field
 
 
 class Score(models.Model):
