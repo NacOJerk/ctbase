@@ -5,9 +5,20 @@ questions = {}
 categories = []
 
 DEBUG = False
+INIT = False
+
+try:
+    str(models.Category.objects.all())
+    INIT = True
+except:
+    pass
 
 
 def question(file_name, name, score, category_name):
+    if not INIT:
+        def inner(func):
+            return func
+        return inner
     category = models.Category.objects.get_or_create(title_field=category_name)[0]
     category.save()
     try:
@@ -28,6 +39,8 @@ def question(file_name, name, score, category_name):
 
 
 def final():
+    if not INIT:
+        return None
     if DEBUG:
         print(questions)
         print(categories)
