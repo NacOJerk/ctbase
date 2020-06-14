@@ -51,7 +51,7 @@
     {% if q not in answered%}
     {% with template_name=q.file_field|stringformat:"s" id=q.category_field.title_field|stringformat:"s"|add:"-"|add:q.title_field|stringformat:"s" %}
         {% include "questions/"|add:template_name with id=id %}
-    {% endwith %}"
+    {% endwith %}
     {% endif %}
 {% endfor %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
